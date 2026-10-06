@@ -7,36 +7,149 @@
 </head>
 <body>
     <header>
-        <h1 class="logo">Chapter House</h1>
-        <nav>
-            <a href="#">Home</a>
-            <a href="store">Store</a>
-            <a href="#about">About</a>
-            <a href="contact">Contact</a>
-        </nav>
-
+            <h1 style="margin: 0;" class="logo">Chapter House</h1>
+            <nav>
+                <a href="#">Home</a>
+                <a href="books">Books</a>
+                <a href="about">About</a>
+                <a href="contact">Contact</a>
+            </nav>
     </header>
+    <main>
+        <section id="hero">
+            <h2 style="font-size: 20px;">Find your next <span style="color: var(--accent);">great chapter</span></h2>
+            <p>Thoughtful recommendations. Beautiful books. A place to get lost in a story.</p>
+            <a class="hero-btn" href="books">
+                Explore books <span style="font-size: 19px; color: var(--accent);"> → </span>
+            </a>
+        </section>
+        <section id="books">
+            <h2 style="color: var(--text);">Featured Books</h2>
+            <div class="book-grid">
+                <article class="book-card">
+                    <img src="images/book-1.jpg" alt="Book cover of ...">
+                    <h3>Book Title</h3>
+                    <p>Author Name</p>
+                    <span>R249</span>
+                </article>
+                <article class="book-card">
+                    <img src="images/book-1.jpg" alt="Book cover of ...">
+                    <h3>Book Title</h3>
+                    <p>Author Name</p>
+                    <span>R249</span>
+                </article>
+                <article class="book-card">
+                    <img src="images/book-1.jpg" alt="Book cover of ...">
+                    <h3>Book Title</h3>
+                    <p>Author Name</p>
+                    <span>R249</span>
+                </article>
+                <article class="book-card">
+                    <img src="images/book-1.jpg" alt="Book cover of ...">
+                    <h3>Book Title</h3>
+                    <p>Author Name</p>
+                    <span>R249</span>
+                </article>
+            </div>
+        </section>
+    </main>
     
 </body>
 </html>
 <style>
+
+/*-------- Base --------*/
+:root {
+    --main: #17202a;
+    --background: #f6f1e8;
+    --paper: #fffdf8;
+    --accent: #c59b5c;
+    --text: #26302b;
+    --muted: #73766f;
+}
+
+*, *::before, *::after {
+box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--background);
+    color: var(--text);
+    font-family: Georgia, "Times New Roman", serif;
+}
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 82px;
+    background: var(--main);
+    color: white;
 }
 .logo {
     font-family: Georgia, serif;
     font-size: 36px;
     letter-spacing: 4px;
-    color: #0b0157;
 }
 nav {
     display: flex;
     gap: 30px;
 }
 nav a {
+    position: relative;
     text-decoration: none;
-    color: #0b0157;
+    padding: 10px 12px;
+    border-radius: 7px;
+    color: #e8e4db;
+    transition: border 0.3s ease;
+    border-bottom: 1px solid transparent;
+    border-right: 1px solid transparent;
+}
+nav a:hover {
+    border-bottom: 1px solid var(--accent);
+    border-right: 1px solid var(--accent);
+}
+p {
+    font-family: Arial, sans-serif;
+}
+#hero {
+    text-align: center;
+    padding: 50px 20px;
+    background:
+        radial-gradient(
+            circle at 80% 45%,
+            rgba(197, 155, 92, 0.18),
+            transparent 28%
+        ),
+        var(--background);
+}
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    text-decoration:none;
+    padding: 20px;
+    background: var(--main);
+    color: white;
+    border: 1px solid var(--main);
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+.hero-btn:hover {
+    background: #263442;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(23, 32, 42, 0.15);
+}
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+.book-card {
+    min-width: 0;
 }
 </style>
