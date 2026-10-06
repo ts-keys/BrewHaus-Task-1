@@ -4,46 +4,317 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter House</title>
+
+    <style>
+
+    /*-------- Base --------*/
+    :root {
+        --main: #17202a;
+        --background: #f6f1e8;
+        --paper: #fffdf8;
+        --accent: #c59b5c;
+        --text: #26302b;
+        --muted: #73766f;
+    }
+
+    /*-------- Global --------*/
+    *, *::before, *::after {
+    box-sizing: border-box;
+    }
+    img {
+        max-width: 100%;
+        display: block;
+        aspect-ratio: 3 / 3;
+    }
+    body {
+        margin: 0;
+        background: var(--background);
+        color: var(--text);
+        font-family: Georgia, "Times New Roman", serif;
+    }
+    h1 {
+        margin: 1rem;
+    }
+    h2 {
+        color: var(--text); 
+        margin: 1rem;
+    }
+
+    /*-------- Header --------*/
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 80px;
+        background: var(--main);
+        color: white;
+        max-width: 100%;
+    }
+    .logo {
+        font-family: Georgia, serif;
+        font-size: clamp(1.6rem, 3vw, 2.25rem);
+        letter-spacing: 4px;
+    }
+    nav {
+        display: flex;
+        gap: 30px;
+    }
+    nav a {
+        position: relative;
+        text-decoration: none;
+        padding: 0.6rem 0.75rem;
+        border-radius: 7px;
+        color: #e8e4db;
+        transition: border 0.3s ease;
+        border-bottom: 1px solid transparent;
+        border-right: 1px solid transparent;
+    }
+    nav a:hover {
+        border-bottom: 1px solid var(--accent);
+        border-right: 1px solid var(--accent);
+    }
+
+    /*-------- Hero --------*/
+    #hero {
+        max-width: 100%;
+        text-align: center;
+        padding: 3.125rem 1.25rem;
+        background:
+            radial-gradient(
+                circle at 80% 45%,
+                rgba(197, 155, 92, 0.18),
+                transparent 28%
+            ),
+            var(--background);
+    }
+    #hero span {
+        color: var(--accent);
+    }
+    .hero-btn {
+        display: inline-flex;
+        align-items: center;
+        text-decoration:none;
+        padding: 1.25rem 1.5rem;
+        background: var(--main);
+        color: white;
+        border: 1px solid var(--main);
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        transition:
+            background 0.25s ease,
+            transform 0.25s ease,
+            box-shadow 0.25s ease;
+    }
+    .hero-btn:hover {
+        background: #263442;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(23, 32, 42, 0.15);
+    }
+
+    /*-------- Books --------*/
+    .books {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1.5rem;
+    }
+    .book-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: clamp(1rem, 2vw, 1.5rem);
+        
+    }
+    .book-card {
+        background: var(--paper);
+        border: 1px solid #e5e5e5;
+        overflow: hidden;
+        min-width: 0;
+        border-radius: 1.2rem;
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            border-color 0.25s ease;
+    }
+    .book-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        border-color: transparent;
+    }
+    .book-card h3 {
+        margin: 1rem 1rem 0.35rem;
+        color: var(--text);
+        font-size: 1.05rem;
+        font-weight: 700;
+        line-height: 1.3;
+    }
+
+    .book-card p {
+        margin: 0 1rem 0.75rem;
+        color: var(--muted);
+        font-size: 0.9rem;
+    }
+    .book-card span {
+        display: block;
+        margin: 0 0.75rem 2rem;
+        font-size: 1rem;
+    }
+
+    /*-------- Responsivity --------*/
+    /*-------- Tablet --------*/
+    @media (max-width: 900px) {
+
+        header {
+            padding: 1rem 1.5rem;
+        }
+
+        nav {
+            gap: 0.25rem;
+        }
+
+        nav a {
+            padding: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .book-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+    }
+    /*-------- Phone --------*/
+    @media (max-width: 600px) {
+        header {
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1.25rem 1rem;
+        }
+
+        nav {
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+    }
+    </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
-            <h1 style="margin: 0;" class="logo">Chapter House</h1>
+            <h1 class="logo">Chapter House</h1>
             <nav>
                 <a href="#">Home</a>
-                <a href="books">Books</a>
-                <a href="about">About</a>
-                <a href="contact">Contact</a>
+                <a href="#books">Books</a>
+                <a href="#fiction">Fiction</a>
+                <a href="#nonfiction">Non-Fiction</a>
             </nav>
     </header>
     <main>
+        <!-- Hero Section -->
         <section id="hero">
-            <h2 style="font-size: 20px;">Find your next <span style="color: var(--accent);">great chapter</span></h2>
+            <h2>Find your next <span>great chapter</span></h2>
             <p>Thoughtful recommendations. Beautiful books. A place to get lost in a story.</p>
-            <a class="hero-btn" href="books">
-                Explore books <span style="font-size: 19px; color: var(--accent);"> → </span>
+            <a class="hero-btn" href="#books">
+                Explore books <span> → </span>
             </a>
         </section>
-        <section id="books">
-            <h2 style="color: var(--text);">Featured Books</h2>
+
+        <!-- Books Section -->
+         <!-- Staff picks Section -->
+        <h2>Staff Picks</h2>
+        <section class="books" id="books">
+            
+            <!-- Book Grid -->
             <div class="book-grid">
                 <article class="book-card">
-                    <img src="images/book-1.jpg" alt="Book cover of ...">
+                    <img src="images/staff picks/fear of death.jpg" alt="">
                     <h3>Book Title</h3>
                     <p>Author Name</p>
                     <span>R249</span>
                 </article>
+
+                <article class="book-card">
+                    <img src="images/staff picks/talking to strangers.jpg" alt="Book cover of ...">
+                    <h3>Book Title</h3>
+                    <p>Author Name</p>
+                    <span>R249</span>
+                </article>
+
+                <article class="book-card">
+                    <img src="images/staff picks/the power of positive thinking.jpg" alt="Book cover of ...">
+                    <h3>Book Title</h3>
+                    <p>Author Name</p>
+                    <span>R249</span>
+                </article>
+
+                <article class="book-card">
+                    <img src="images/staff picks/the subtle art.jpg" alt="Book cover of ...">
+                    <h3>Book Title</h3>
+                    <p>Author Name</p>
+                    <span>R249</span>
+                </article>
+            </div>
+        </section>
+
+        <!-- Fiction books Section -->
+        <h2>Fiction</h2>
+        <section class="books" id="fiction">
+            <div class="book-grid">
+                <article class="book-card">
+                    <img src="images/non-fiction/How to kill your ego.jpg" alt="Book cover of ...">
+                    <h3>Book Title</h3>
+                    <p>Author Name</p>
+                    <span>R249</span>
+                </article>
+
+                <article class="book-card">
+                    <img src="images/non-fiction/Hyper Focus.jpg" alt="Book cover of ...">
+                    <h3>Book Title</h3>
+                    <p>Author Name</p>
+                    <span>R249</span>
+                </article>
+
+                <article class="book-card">
+                    <img src="images/non-fiction/The discipline of focus.jpg" alt="Book cover of ...">
+                    <h3>Book Title</h3>
+                    <p>Author Name</p>
+                    <span>R249</span>
+                </article>
+                
+                <article class="book-card">
+                    <img src="images/non-fiction/The longest talk.jpg" alt="Book cover of ...">
+                    <h3>Book Title</h3>
+                    <p>Author Name</p>
+                    <span>R249</span>
+                </article>
+            </div>
+        </section>
+
+        <!-- Non-Fiction books Section -->
+        <h2>Non-Fiction</h2>
+        <section class="books" id="nonfiction">
+            <div class="book-grid">
+                <article class="book-card">
+                    <img src="https://i.pinimg.com/736x/95/76/ea/9576ea09f6201b300b8669d8a4c9e6e5.jpg" alt="Book cover of ...">
+                    <h3>Book Title</h3>
+                    <p>Author Name</p>
+                    <span>R249</span>
+                </article>
+
                 <article class="book-card">
                     <img src="images/book-1.jpg" alt="Book cover of ...">
                     <h3>Book Title</h3>
                     <p>Author Name</p>
                     <span>R249</span>
                 </article>
+
                 <article class="book-card">
                     <img src="images/book-1.jpg" alt="Book cover of ...">
                     <h3>Book Title</h3>
                     <p>Author Name</p>
                     <span>R249</span>
                 </article>
+
                 <article class="book-card">
                     <img src="images/book-1.jpg" alt="Book cover of ...">
                     <h3>Book Title</h3>
@@ -56,100 +327,3 @@
     
 </body>
 </html>
-<style>
-
-/*-------- Base --------*/
-:root {
-    --main: #17202a;
-    --background: #f6f1e8;
-    --paper: #fffdf8;
-    --accent: #c59b5c;
-    --text: #26302b;
-    --muted: #73766f;
-}
-
-*, *::before, *::after {
-box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    background: var(--background);
-    color: var(--text);
-    font-family: Georgia, "Times New Roman", serif;
-}
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 82px;
-    background: var(--main);
-    color: white;
-}
-.logo {
-    font-family: Georgia, serif;
-    font-size: 36px;
-    letter-spacing: 4px;
-}
-nav {
-    display: flex;
-    gap: 30px;
-}
-nav a {
-    position: relative;
-    text-decoration: none;
-    padding: 10px 12px;
-    border-radius: 7px;
-    color: #e8e4db;
-    transition: border 0.3s ease;
-    border-bottom: 1px solid transparent;
-    border-right: 1px solid transparent;
-}
-nav a:hover {
-    border-bottom: 1px solid var(--accent);
-    border-right: 1px solid var(--accent);
-}
-p {
-    font-family: Arial, sans-serif;
-}
-#hero {
-    text-align: center;
-    padding: 50px 20px;
-    background:
-        radial-gradient(
-            circle at 80% 45%,
-            rgba(197, 155, 92, 0.18),
-            transparent 28%
-        ),
-        var(--background);
-}
-.hero-btn {
-    display: inline-flex;
-    align-items: center;
-    text-decoration:none;
-    padding: 20px;
-    background: var(--main);
-    color: white;
-    border: 1px solid var(--main);
-    border-radius: 15px;
-    font-size: 14px;
-    font-weight: bold;
-    transition:
-        background 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-}
-.hero-btn:hover {
-    background: #263442;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(23, 32, 42, 0.15);
-}
-.book-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-}
-.book-card {
-    min-width: 0;
-}
-</style>
