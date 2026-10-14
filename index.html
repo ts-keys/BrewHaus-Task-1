@@ -21,11 +21,6 @@
     *, *::before, *::after {
     box-sizing: border-box;
     }
-    img {
-        max-width: 100%;
-        display: block;
-        aspect-ratio: 3 / 3;
-    }
     body {
         margin: 0;
         background: var(--background);
@@ -120,16 +115,14 @@
     }
     .book-grid {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(4, 1fr);
         gap: clamp(1rem, 2vw, 1.5rem);
-        
     }
     .book-card {
         background: var(--paper);
         border: 1px solid #e5e5e5;
         overflow: hidden;
-        min-width: 0;
-        border-radius: 1.2rem;
+        border-radius: 1rem;
         transition:
             transform 0.25s ease,
             box-shadow 0.25s ease,
@@ -139,6 +132,11 @@
         transform: translateY(-6px);
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
         border-color: transparent;
+    }
+    .book-card img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
     }
     .book-card h3 {
         margin: 1rem 1rem 0.35rem;
@@ -158,6 +156,148 @@
         margin: 0 0.75rem 2rem;
         font-size: 1rem;
     }
+
+    /*-------- About --------*/
+    .about {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 1.5rem;
+    }
+    .about h2 {
+        margin: -1rem 0 1rem;
+    }
+    .about p {
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    /*-------- Footer --------*/
+    footer {
+        background: var(--main);
+        color: #e8e4db;
+        margin-top: 3rem;
+    }
+
+    .footer-main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 3.5rem 1.5rem 2.5rem;
+        display: grid;
+        grid-template-columns: 1.4fr 0.8fr 0.8fr 1.4fr;
+        gap: 2.5rem;
+    }
+
+    .footer-brand .logo {
+        margin: 0 0 1rem;
+        color: #fffdf8;
+        font-size: 1.7rem;
+    }
+
+    .footer-brand p{
+        color: #c3c3bb;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin: 0 0 1.25rem;
+    }
+
+    .footer-tagline {
+        color: var(--accent) !important;
+        font-style: italic;
+    }
+
+    .footer-column h3 {
+        color: #fffdf8;
+        font-size: 1rem;
+        margin: 0 0 1.25rem;
+        letter-spacing: 0.5px;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .footer-links a {
+        width: fit-content;
+        color: #c3c3bb;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.25s ease, transform 0.25s ease;
+    }
+
+    .footer-links a:hover {
+        color: var(--accent);
+        transform: translateX(4px);
+    }
+    .footer-bottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1.25rem 1.5rem;
+        border-top: 1px solid #39414a;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .footer-bottom p {
+        margin: 0;
+        color: #b5b5af;
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+
+    .footer-bottom-links {
+        display: flex;
+        gap: 1.25rem;
+        flex-wrap: wrap;
+    }
+
+    .footer-bottom-links a {
+        color: #b5b5af;
+        font-size: 0.85rem;
+        text-decoration: none;
+        transition: color 0.25s ease;
+    }
+
+    .footer-bottom-links a:hover {
+        color: var(--accent);
+    }
+
+    .footer-socials {
+        display: flex;
+        gap: 0.65rem;
+        margin-top: 1.25rem;
+    }
+
+    .footer-socials a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border: 1px solid #46505a;
+        border-radius: 50%;
+        color: #e8e4db;
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition:
+            background 0.25s ease,
+            border-color 0.25s ease,
+            color 0.25s ease,
+            transform 0.25s ease;
+    }
+
+    .footer-socials a:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--main);
+        transform: translateY(-3px);
+    }
+
+
 
     /*-------- Responsivity --------*/
     /*-------- Tablet --------*/
@@ -179,6 +319,10 @@
         .book-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
+        .footer-main {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 2.5rem;
+        }
 
     }
     /*-------- Phone --------*/
@@ -195,6 +339,17 @@
             flex-wrap: wrap;
             gap: 0.25rem;
         }
+        .footer-main {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            padding: 2.5rem 1.25rem;
+        }
+
+        .footer-bottom {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 1.25rem;
+        }
     }
     </style>
 </head>
@@ -205,8 +360,8 @@
             <nav>
                 <a href="#">Home</a>
                 <a href="#books">Books</a>
-                <a href="#fiction">Fiction</a>
-                <a href="#nonfiction">Non-Fiction</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact</a>
             </nav>
     </header>
     <main>
@@ -214,6 +369,7 @@
         <section id="hero">
             <h2>Find your next <span>great chapter</span></h2>
             <p>Thoughtful recommendations. Beautiful books. A place to get lost in a story.</p>
+            <p>Chapter House - A home for every story. A new chapter for every reader.</p>
             <a class="hero-btn" href="#books">
                 Explore books <span> → </span>
             </a>
@@ -221,7 +377,7 @@
 
         <!-- Books Section -->
          <!-- Staff picks Section -->
-        <h2>Staff Picks</h2>
+        <h2>Picked for You</h2>
         <section class="books" id="books">
             
             <!-- Book Grid -->
@@ -230,40 +386,15 @@
                     <img src="images/staff picks/fear of death.jpg" alt="">
                     <h3>Book Title</h3>
                     <p>Author Name</p>
+                    <p>Staff picks</p>
                     <span>R249</span>
                 </article>
 
-                <article class="book-card">
-                    <img src="images/staff picks/talking to strangers.jpg" alt="Book cover of ...">
-                    <h3>Book Title</h3>
-                    <p>Author Name</p>
-                    <span>R249</span>
-                </article>
-
-                <article class="book-card">
-                    <img src="images/staff picks/the power of positive thinking.jpg" alt="Book cover of ...">
-                    <h3>Book Title</h3>
-                    <p>Author Name</p>
-                    <span>R249</span>
-                </article>
-
-                <article class="book-card">
-                    <img src="images/staff picks/the subtle art.jpg" alt="Book cover of ...">
-                    <h3>Book Title</h3>
-                    <p>Author Name</p>
-                    <span>R249</span>
-                </article>
-            </div>
-        </section>
-
-        <!-- Fiction books Section -->
-        <h2>Fiction</h2>
-        <section class="books" id="fiction">
-            <div class="book-grid">
                 <article class="book-card">
                     <img src="images/non-fiction/How to kill your ego.jpg" alt="Book cover of ...">
                     <h3>Book Title</h3>
                     <p>Author Name</p>
+                    <p>Non-fiction</p>
                     <span>R249</span>
                 </article>
 
@@ -271,59 +402,105 @@
                     <img src="images/non-fiction/Hyper Focus.jpg" alt="Book cover of ...">
                     <h3>Book Title</h3>
                     <p>Author Name</p>
+                    <p>Non-fiction</p>
                     <span>R249</span>
                 </article>
 
                 <article class="book-card">
-                    <img src="images/non-fiction/The discipline of focus.jpg" alt="Book cover of ...">
+                    <img src="images/staff picks/the subtle art.jpg" alt="Book cover of ...">
                     <h3>Book Title</h3>
                     <p>Author Name</p>
-                    <span>R249</span>
-                </article>
-                
-                <article class="book-card">
-                    <img src="images/non-fiction/The longest talk.jpg" alt="Book cover of ...">
-                    <h3>Book Title</h3>
-                    <p>Author Name</p>
+                    <p>Staff picks</p>
                     <span>R249</span>
                 </article>
             </div>
         </section>
-
-        <!-- Non-Fiction books Section -->
-        <h2>Non-Fiction</h2>
-        <section class="books" id="nonfiction">
-            <div class="book-grid">
-                <article class="book-card">
-                    <img src="https://i.pinimg.com/736x/95/76/ea/9576ea09f6201b300b8669d8a4c9e6e5.jpg" alt="Book cover of ...">
-                    <h3>Book Title</h3>
-                    <p>Author Name</p>
-                    <span>R249</span>
-                </article>
-
-                <article class="book-card">
-                    <img src="images/book-1.jpg" alt="Book cover of ...">
-                    <h3>Book Title</h3>
-                    <p>Author Name</p>
-                    <span>R249</span>
-                </article>
-
-                <article class="book-card">
-                    <img src="images/book-1.jpg" alt="Book cover of ...">
-                    <h3>Book Title</h3>
-                    <p>Author Name</p>
-                    <span>R249</span>
-                </article>
-
-                <article class="book-card">
-                    <img src="images/book-1.jpg" alt="Book cover of ...">
-                    <h3>Book Title</h3>
-                    <p>Author Name</p>
-                    <span>R249</span>
-                </article>
-            </div>
+        <!-- About Section -->
+        <section class="about" id="about">
+            <h2>About Chapter House</h2>
+            <p>
+                We created Chapter House with the idea that finding a great book should feel just as exciting as reading it.
+                In a world that moves quickly, we wanted to create a space where readers could slow down, 
+                get lost in a story, and rediscover the simple pleasure of turning a page.
+            </p>
+            <p>
+                At Chapter House, we believe books are more than just pages bound together. They are doorways to new worlds,
+                windows into different lives, and companions that stay with us long after the final page.
+                Whether you're searching for your next unforgettable read, discovering a new favourite author,
+                or revisiting a story that feels like home, we're here to help you find the book that speaks to you.
+            </p>
         </section>
     </main>
+    <footer id="contact">
+    <div class="footer-main">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+            <h2 class="logo">Chapter House</h2>
+            <p class="footer-tagline">
+                A home for every story. A new chapter for every reader.
+            </p>
+            <p>
+                Discover stories that inspire, ideas that stay with you,
+                and books that make every chapter worthwhile.
+            </p>
+
+            <!-- Social Links -->
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Instagram">IG</a>
+
+                <a href="https://www.facebook.com/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Facebook">FB</a>
+
+                <a href="https://www.tiktok.com/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="TikTok">TT</a>
+            </div>
+        </div>
+        <!-- Quick Links -->
+        <div class="footer-column">
+            <h3>Explore</h3>
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#books">Staff Picks</a>
+                <a href="#books">Browse Books</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+        <!-- Customer Support -->
+        <div class="footer-column">
+            <h3>Customer Care</h3>
+            <div class="footer-links">
+                <a href="#contact">Get in Touch</a>
+                <a href="#contact">Shipping &amp; Delivery</a>
+                <a href="#contact">Returns &amp; Refunds</a>
+                <a href="#contact">FAQs</a>
+            </div>
+        </div>
+
+    </div>
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+        <p>
+            &copy; 2026 Chapter House.
+            All rights reserved.
+        </p>
+
+        <div class="footer-bottom-links">
+            <a href="#contact">Privacy Policy</a>
+            <a href="#contact">Terms &amp; Conditions</a>
+        </div>
+
+        <p>Made for the love of reading.</p>
+    </div>
+    </footer>
     
 </body>
 </html>
