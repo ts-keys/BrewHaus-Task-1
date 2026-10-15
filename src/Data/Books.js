@@ -1,7 +1,7 @@
 export const books = [
   {
     id: 1,
-    image: "public/Images/staff picks/fear of death.jpg",
+    image: "Images/staff picks/fear of death.jpg",
     title: "Book Title",
     author: "Author Name",
     category: "Staff picks",
@@ -9,7 +9,7 @@ export const books = [
   },
   {
     id: 2,
-    image: "public/Images/non-fiction/How to kill your ego.jpg",
+    image: "Images/non-fiction/How to kill your ego.jpg",
     title: "Book Title",
     author: "Author Name",
     category: "Non-fiction",
@@ -17,7 +17,7 @@ export const books = [
   },
   {
     id: 3,
-    image: "public/Images/non-fiction/Hyper Focus.jpg",
+    image: "Images/non-fiction/Hyper Focus.jpg",
     title: "Book Title",
     author: "Author Name",
     category: "Non-fiction",
@@ -25,7 +25,7 @@ export const books = [
   },
   {
     id: 4,
-    image: "public/Images/staff picks/the subtle art.jpg",
+    image: "Images/staff picks/the subtle art.jpg",
     title: "Book Title",
     author: "Author Name",
     category: "Staff picks",
