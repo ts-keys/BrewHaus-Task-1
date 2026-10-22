@@ -177,10 +177,66 @@ nav a:hover {
   color: var(--muted);
   font-size: 0.9rem;
 }
-.book-card span {
+/* Price and stepper layout */
+.book-card-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding: 0.5rem 1rem 1rem;
+}
+
+.book-card .book-price {
   display: block;
-  margin: 0 0.75rem 2rem;
+  margin: 0;
   font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Quantity stepper */
+.quantity-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.25rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.5rem;
+  background: var(--paper);
+}
+
+.quantity-stepper button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  border-radius: 0.35rem;
+  background: #f2f0ec;
+  color: var(--text);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.quantity-stepper button:hover:not(:disabled) {
+  background: #e5e0d8;
+}
+
+.quantity-stepper button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.book-card .quantity-stepper span {
+  display: inline-block;
+  min-width: 1rem;
+  margin: 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text);
 }
 
 /* -------- Book Section -------- */

@@ -1,3 +1,5 @@
+import QuantityStepper from "./QuantityStepper";
+
 function BookCard({ image, title, author, category, price }) {
   return (
     <article className="book-card">
@@ -7,7 +9,10 @@ function BookCard({ image, title, author, category, price }) {
       <p>{author}</p>
       <p>{category}</p>
 
-      <span>{price}</span>
+      <div className="book-card-actions">
+        <span className="book-price">{price}</span>
+        <QuantityStepper />
+      </div>
     </article>
   );
 }
