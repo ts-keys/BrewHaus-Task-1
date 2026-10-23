@@ -9,12 +9,12 @@ if (!process.env.BETTER_AUTH_SECRET) {
 export const auth = betterAuth({
   database: pool,
 
-  secret: process.env.Better_Auth_Secret,
+  secret: process.env.BETTER_AUTH_SECRET,
 
   baseURL: process.env.BETTER_AUTH_URL,
 
   trustedOrigins: [
-    process.env.FRONTEND_URL ?? "http://localhost:5173"
+    process.env.FRONTEND_URL
   ],
 
   emailAndPassword: {
