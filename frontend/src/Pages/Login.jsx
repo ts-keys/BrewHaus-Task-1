@@ -23,7 +23,6 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login submitted:", formData);
     setIsLoading(true);
     try {
       await login(formData.email, formData.password);

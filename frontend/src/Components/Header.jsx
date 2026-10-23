@@ -3,8 +3,10 @@ import { toast } from "react-toastify";
 
 function Header() {
 
-  const { data: session, isPending } = authClient.useSession();
-
+  const { data: session, isPending, error} = authClient.useSession();
+  console.log("Session:", session)
+  console.log("Session error:", error);
+  console.log("is pending", isPending)
   const signOut = async () => {
     try {
       const { error } = await authClient.signOut();
