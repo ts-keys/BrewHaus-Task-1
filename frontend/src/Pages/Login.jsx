@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { authClient } from "../lib/auth-client";
+import { toast } from "react-toastify";
 import "../auth.css"
 
 export default function Login() {
+  const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -19,36 +21,40 @@ export default function Login() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Login submitted:", formData);
-    login(formData.email, formData.password)
+    setIsLoading(true);
+    try {
+      await login(formData.email, formData.password);
+    } finally {
+      setIsLoading(false)
+    }
+    
   };
 
   async function login(email, password) {
-  const { data, error } = await authClient.signIn.email({
+  const { error } = await authClient.signIn.email({
     email,
-    password
+    password,
+    callbackURL: "/"
   });
 
   if (error) {
-    console.error("Login failed:", error.message);
+    toast.error(error.message)
     return;
   }
-
-  console.log("Login successful:", data);
 }
 
   return (
     <main className="auth-page">
       <section className="auth-card">
         <Link to="/" className="auth-logo">
-          THE BOOK NOOK
+          Chapter House
         </Link>
 
         <div className="auth-heading">
           <span className="auth-eyebrow">WELCOME BACK</span>
-          <h1>Good to see you again.</h1>
           <p>
             Sign in to discover your next favourite read.
           </p>
@@ -102,8 +108,9 @@ export default function Login() {
             </div>
           </div>
 
-          <button type="submit" className="auth-submit">
-            Sign In <span aria-hidden="true">→</span>
+          <button type="submit" className="auth-submit" disabled={isLoading}>
+            {isLoading ? "Signing you in" : "Sign In"}
+            <span aria-hidden="true">→</span>
           </button>
         </form>
 

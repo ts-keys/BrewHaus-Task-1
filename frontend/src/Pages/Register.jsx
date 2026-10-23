@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { authClient } from "../lib/auth-client";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -38,7 +41,7 @@ function Register() {
     }
     setIsLoading(true);
     try {
-      register(formData.name, formData.email, formData.password);
+      await register(formData.name, formData.email, formData.password);
     } finally {
       setIsLoading(false)
     }
@@ -55,6 +58,8 @@ function Register() {
     setError(error.message);
     return;
   }
+  toast.success('Successfully registered. Proceed to login')
+  navigate('/login')
 
 }
 

@@ -1,4 +1,21 @@
+import { authClient } from "../lib/auth-client";
+import { toast } from "react-toastify";
+
 function Header() {
+
+  const { data: session, isPending } = authClient.useSession();
+
+  const signOut = async () => {
+    try {
+      const { error } = await authClient.signOut();
+
+      if (error) {
+        toast.error(error.message)
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
   return (
     <header className="site-header">
       <a className="logo" href="#home">
@@ -10,6 +27,21 @@ function Header() {
         <a href="#books">Books</a>
         <a href="#about">About Us</a>
         <a href="#contact">Contact</a>
+         {!isPending && (
+          session?.user ? (
+            <button
+              type="button"
+              className="auth-button"
+              onClick={signOut}
+            >
+              Sign Out
+            </button>
+          ) : (
+            <a href="/login" className="auth-button">
+              Sign In
+            </a>
+          )
+        )}
       </nav>
     </header>
   );

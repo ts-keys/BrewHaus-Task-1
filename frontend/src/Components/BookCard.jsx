@@ -1,6 +1,6 @@
 import QuantityStepper from "./QuantityStepper";
 
-function BookCard({ image, title, author, category, price }) {
+function BookCard({ image, title, author, category, price_cents }) {
   return (
     <article className="book-card">
       <img src={image} alt={`Cover of ${title}`} />
@@ -10,7 +10,11 @@ function BookCard({ image, title, author, category, price }) {
       <p>{category}</p>
 
       <div className="book-card-actions">
-        <span className="book-price">{price}</span>
+        <span className="book-price">
+          {new Intl.NumberFormat("en-ZA", {
+              style: "currency",
+              currency: "ZAR"
+            }).format(price_cents / 100)}</span>
         <QuantityStepper />
       </div>
     </article>

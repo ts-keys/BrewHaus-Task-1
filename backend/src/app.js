@@ -12,17 +12,10 @@ app.use(
     credentials: true
   })
 );
-
 app.all("/api/auth/*splat", toNodeHandler(auth));
 app.use(express.json());
 
-app.get("/api/health", (_req, res) => {
-  res.json({
-    status: "ok",
-    message: "Backend is running"
-  });
-});
-
+// test to check users
 app.get("/api/users", async (_req, res) => {
   try {
     const result = await pool.query(
@@ -33,22 +26,17 @@ app.get("/api/users", async (_req, res) => {
     console.error('no')
   }
 })
-app.get("/api/db-health", async (_req, res) => {
+
+app.get('/api/books', async (_req, res) => {
   try {
-    const result = await pool.query(
-      "SELECT NOW() AS current_time"
-    );
-
-    res.json({
-      connected: true,
-      databaseTime: result.rows[0].current_time
-    });
+    const result = await pool.query(`
+      SELECT * FROM books ORDER BY id
+      `)
+      res.json(result.rows)
   } catch (error) {
-    console.error("Database connection failed:", error);
-
+    console.log('failed')
     res.status(500).json({
-      connected: false,
-      message: "Could not connect to the database"
-    });
+      message: 'Failed to retrieve books'
+    })
   }
-});
+})

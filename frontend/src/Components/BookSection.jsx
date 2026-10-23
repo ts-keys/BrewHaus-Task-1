@@ -1,13 +1,28 @@
+import { toast } from "react-toastify";
 import BookCard from "./BookCard";
-import {books} from '../Data/Books'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const categories = ['All', 'Non-fiction', 'Staff picks'];
 
 function BookSection() {
+  const [books, setBooks] = useState([])
+  const [isLoading, setIsLoading] = useState(true);
   const [category, setCategory] = useState('All');
   const filtered = category === 'All' ? books : books.filter((book) => book.category === category);
 
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const books = await fetch('http://localhost:3000/api/books');
+        const data = await books.json();
+        setBooks(data);
+        setIsLoading(false);
+      } catch (error) {
+        toast.error(error.message);
+      }
+    }
+    fetchBooks();
+  },[])
   return (
     <section aria-labelledby="books-heading">
       <div className="books-heading">
@@ -29,13 +44,14 @@ function BookSection() {
           ))}
         </div>
       </div>
+      {isLoading? <p>Loading books...</p> : 
       <div className="books" id="books">
         <div className="book-grid">
           {filtered.map((book) => (
             <BookCard key={book.id} {...book} />
           ))}
         </div>
-      </div>
+      </div>}
     </section>
   );
 }

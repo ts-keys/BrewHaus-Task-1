@@ -80,6 +80,27 @@ nav a:hover {
   border-right: 1px solid var(--accent);
 }
 
+.auth-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--accent);
+  border-radius: 7px;
+  background: transparent;
+  color: white;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.auth-button:hover {
+  background: var(--accent);
+  color: var(--main);
+}
+
+
 /* -------- Hero -------- */
 .hero {
   max-width: 100%;
