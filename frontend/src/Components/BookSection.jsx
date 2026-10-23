@@ -13,7 +13,7 @@ function BookSection() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const books = await fetch(`import.meta.env.VITE_API_URL/api/books`);
+        const books = await fetch(`${import.meta.env.VITE_API_URL}/api/books`);
         const data = await books.json();
         setBooks(data);
         setIsLoading(false);
