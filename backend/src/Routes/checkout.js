@@ -1,7 +1,7 @@
 import express from "express";
 import { pool } from "../db.js";
 import { stripe } from "../Lib/stripe.js";
-import { requireAuth } from "../middleware/require-auth.js";
+import { requireAuth } from "../Middleware/require-auth.js";
 
 export const checkout = express.Router();
 
