@@ -1,5 +1,5 @@
 import express from "express";
-import { stripe } from "../lib/stripe.js";
+import { stripe } from "../Lib/stripe.js";
 import { pool } from "../db.js";
 
 export const stripeWebhook = express.Router();
