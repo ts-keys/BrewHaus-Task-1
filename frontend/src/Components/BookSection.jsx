@@ -3,6 +3,7 @@ import BookCard from "./BookCard";
 import { useState, useEffect } from "react";
 
 const categories = ['All', 'Non-fiction', 'Staff picks'];
+const API_URL = import.meta.env.VITE_API_URL
 
 function BookSection() {
   const [books, setBooks] = useState([])
@@ -13,7 +14,7 @@ function BookSection() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const books = await fetch(`${import.meta.env.VITE_API_URL}/api/books`);
+        const books = await fetch(`${API_URL}/api/books`);
         const data = await books.json();
         setBooks(data);
         setIsLoading(false);

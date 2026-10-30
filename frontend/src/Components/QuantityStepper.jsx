@@ -1,13 +1,12 @@
-
-import { useState } from "react";
-
-function QuantityStepper({ initialQuantity = 1, min = 1, max = 20, onChange }) {
-  const [quantity, setQuantity] = useState(initialQuantity);
-
+function QuantityStepper({
+  quantity = 1,
+  min = 1,
+  max = 20,
+  onChange
+}) {
   function updateQuantity(nextQuantity) {
     const next = Math.min(max, Math.max(min, nextQuantity));
 
-    setQuantity(next);
     onChange?.(next);
   }
 
