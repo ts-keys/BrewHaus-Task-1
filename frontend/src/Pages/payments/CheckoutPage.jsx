@@ -3,6 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+// Function to format the price from cents back to rands
 const formatPrice = (cents) =>
   new Intl.NumberFormat("en-ZA", {
     style: "currency",
@@ -10,6 +11,10 @@ const formatPrice = (cents) =>
   }).format(cents / 100);
 
 function CheckoutPage() {
+
+  /**************************************
+    *  Local variables
+  *************************************/
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const location = useLocation();
@@ -22,13 +27,21 @@ function CheckoutPage() {
       <main className="payment-page payment-empty-state">
         <h1>No book selected</h1>
         <p>Please select a book before proceeding to checkout.</p>
-        <Link to="/books" className="payment-primary-button">
+        <Link to="/" className="payment-primary-button">
           Browse Books
         </Link>
       </main>
     );
   }
   
+  /**************************************
+    *  Local methods
+  *************************************/
+
+  /**
+   * @name startCheckout
+   * @description begins a checkout session
+   */
   const startCheckout = async () => {
     setError("");
     setIsSubmitting(true);

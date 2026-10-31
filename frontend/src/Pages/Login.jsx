@@ -5,13 +5,18 @@ import { toast } from "react-toastify";
 import "../auth.css"
 
 export default function Login() {
+
+  /**************************************
+    *  Local variables
+  *************************************/
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({email: "", password: ""});
 
+  /**************************************
+    *  Local methods
+  *************************************/
+ // Handles changes on form
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -21,6 +26,7 @@ export default function Login() {
     }));
   };
 
+  // Fuction that handles the submittion of the form
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -32,7 +38,14 @@ export default function Login() {
     
   };
 
-  async function login(email, password) {
+  /**
+   * @name - login
+   * @param {*} email - user email
+   * @param {*} password - user password
+   * @description - Takes in email and password and uses better auth to log user in
+   * @returns 
+   */
+  const login = async (email, password) => {
   const { error } = await authClient.signIn.email({
     email,
     password,

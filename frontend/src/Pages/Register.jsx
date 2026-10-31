@@ -5,6 +5,10 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
+
+  /**************************************
+    *  Local variables
+  *************************************/
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -16,6 +20,10 @@ function Register() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  /**************************************
+    *  Local methods
+  *************************************/
+ // Handles changes on form
   const handleChange = (e) => {
     const { name, value} = e.target;
 
@@ -27,6 +35,7 @@ function Register() {
     setError("");
   };
 
+  // Handles submitting the form and error handling for the form
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -47,6 +56,14 @@ function Register() {
     }
   };
 
+  /**
+   * @name register
+   * @param {*} name - user name
+   * @param {*} email -user email
+   * @param {*} password - user password
+   * @description takes in name email and password to create a new user
+   * @returns 
+   */
   async function register(name, email, password) {
   const { error } = await authClient.signUp.email({
     name,

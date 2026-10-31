@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+// Function to format the price from cents back to rands
 const formatPrice = (cents, currency = "ZAR") =>
   new Intl.NumberFormat("en-ZA", {
     style: "currency",
@@ -19,11 +20,20 @@ const statusLabel = {
 };
 
 function MyOrdersPage() {
+
+  /**************************************
+    *  Local variables
+  *************************************/
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
+  /**************************************
+    *  Hooks
+  *************************************/
   useEffect(() => {
+
+    // Function to fetch all user orders from the database
     const fetchOrders = async () => {
       try {
         const response = await fetch(`${API_URL}/api/orders`, {

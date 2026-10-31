@@ -4,8 +4,13 @@ import { authClient } from "../lib/auth-client";
 import { toast } from "react-toastify";
 
 function Header() {
+
+  /**************************************
+    *  Local variables
+  *************************************/
   const { data: session, isPending } = authClient.useSession();
 
+  // Function to sign out from site
   const signOut = async () => {
     try {
       const { error } = await authClient.signOut();

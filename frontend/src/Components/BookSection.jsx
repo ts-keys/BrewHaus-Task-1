@@ -6,12 +6,21 @@ const categories = ['All', 'Non-fiction', 'Staff picks'];
 const API_URL = import.meta.env.VITE_API_URL
 
 function BookSection() {
+
+  /**************************************
+    *  Local variables
+  *************************************/
   const [books, setBooks] = useState([])
   const [isLoading, setIsLoading] = useState(true);
   const [category, setCategory] = useState('All');
   const filtered = category === 'All' ? books : books.filter((book) => book.category === category);
 
+  /**************************************
+    *  Hooks
+  *************************************/
   useEffect(() => {
+
+    // fucntion to fetch books from the backend
     const fetchBooks = async () => {
       try {
         const books = await fetch(`${API_URL}/api/books`);
@@ -45,7 +54,7 @@ function BookSection() {
           ))}
         </div>
       </div>
-      {isLoading? <p>Loading books...</p> : 
+      {isLoading? <p className="loading">Loading books...</p> : 
       <div className="books" id="books">
         <div className="book-grid">
           {filtered.map((book) => (

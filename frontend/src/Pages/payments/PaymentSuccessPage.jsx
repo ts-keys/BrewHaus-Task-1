@@ -1,21 +1,30 @@
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+const formatPrice = (cents, currency = "ZAR") =>
+    new Intl.NumberFormat("en-ZA", {
+      style: "currency",
+      currency,
+    }).format(cents / 100);
+
 function PaymentSuccessPage() {
+
+  /**************************************
+    *  Local variables
+  *************************************/
   const orderId = new URLSearchParams(window.location.search).get("order_id");
-
-  const [status, setStatus] = useState(() =>
-    orderId ? "checking" : "error"
-  );
-
+  const [status, setStatus] = useState(() => orderId ? "checking" : "error");
   const [order, setOrder] = useState(null);
 
+  /**************************************
+    *  Hooks
+  *************************************/
   useEffect(() => {
     if (!orderId) return;
 
     let cancelled = false;
 
+    // Fuction to fetch the users order details after payement
     async function checkOrder() {
       for (let attempt = 0; attempt < 8; attempt++) {
         if (cancelled) return;
@@ -71,12 +80,6 @@ function PaymentSuccessPage() {
       cancelled = true;
     };
   }, [orderId]);
-
-  const formatPrice = (cents, currency = "ZAR") =>
-    new Intl.NumberFormat("en-ZA", {
-      style: "currency",
-      currency,
-    }).format(cents / 100);
 
   const renderContent = () => {
     switch (status) {
